@@ -1,6 +1,6 @@
-# The Official Kodeco SwiftLint Policy
+# Lune's Official SwiftLint Policy
 
-The SwiftLint configuration in this repo is designed to ensure the work we create at Kodeco conforms with [The Official Kodeco Swift Style Guide](https://github.com/kodecocodes/swift-style-guide/blob/main/README.markdown).
+The SwiftLint configuration in this repo is designed to ensure the work we create at Lune conforms with [The Official Lune Swift Style Guide](https://github.com/Lune-Technologies/swift-style-guide/blob/main/README.markdown).
 
 The focus of this style is to improve readability in our print and web publications. Therefore, this style may be different from others you've used, but the demands of print and online reading are different from other contexts.
 
@@ -10,22 +10,22 @@ These guides use SwiftLint as a standard. You can learn more about SwiftLint by 
 
 ## Table of Contents
 
-* [Installing SwiftLint](#installing-swiftlint)
-* [Using the Configuration File](#using-the-configuration-file)
-* [Xcode Settings](#xcode-settings)
-* [Running SwiftLint](#running-swiftlint)
-* [Handling Rule Exceptions](#handling-rule-exceptions)
-* [Approved Exceptions](#approved-exceptions)
-	* [Implicitly Unwrapped Optionals](#implicitly-unwrapped-optionals)
-	* [Force Cast](#force-cast)
-	* [Force Unwrapping](#force-unwrapping)
-	* [SwiftUI and Multiple Trailing Closures](#swiftui-and-multiple-trailing-closures)
-	* [Open-Source Files](#open-source-files)
-* [Other Notes](#other-notes)
+- [Installing SwiftLint](#installing-swiftlint)
+- [Using the Configuration File](#using-the-configuration-file)
+- [Xcode Settings](#xcode-settings)
+- [Running SwiftLint](#running-swiftlint)
+- [Handling Rule Exceptions](#handling-rule-exceptions)
+- [Approved Exceptions](#approved-exceptions)
+  - [Implicitly Unwrapped Optionals](#implicitly-unwrapped-optionals)
+  - [Force Cast](#force-cast)
+  - [Force Unwrapping](#force-unwrapping)
+  - [SwiftUI and Multiple Trailing Closures](#swiftui-and-multiple-trailing-closures)
+  - [Open-Source Files](#open-source-files)
+- [Other Notes](#other-notes)
 
 ## Installing SwiftLint
 
-We recommend that Kodeco team members install SwiftLint using Homebrew:
+We recommend that Lune team members install SwiftLint using Homebrew:
 
 ```bash
 brew install swiftlint
@@ -37,15 +37,15 @@ If you are unable to use Homebrew, you may use one of the other methods describe
 
 ## Using the Configuration File
 
-**Do not** place the configuration file inside your project. We don't want to impose this style on readers without their express knowledge or understanding of what's going on. 
+**Do not** place the configuration file inside your project. We don't want to impose this style on readers without their express knowledge or understanding of what's going on.
 
-Download **com.raywenderlich.swiftlint.yml** from the [Swift Style Guide repo]([https://github.com/raywenderlich/swift-style-guide](https://github.com/kodecocodes/swift-style-guide/)) and place it your home directory: **~/com.raywenderlich.swiftlint.yml**.
+Download **io.lunedata.swiftlint.yml** from the [Swift Style Guide repo](<[https://github.com/Lune-Technologies/swift-style-guide](https://github.com/Lune-Technologies/swift-style-guide/)>) and place it your home directory: **~/io.lunedata.swiftlint.yml**.
 
 ## Xcode Settings
 
 You'll need to configure Xcode to remove trailing whitespace from all lines. This is not the default configuration.
 
-In Xcode's Preferences, select **Text Editing** ▸ **Editing** and check **Including whitespace-only lines**. 
+In Xcode's Preferences, select **Text Editing** ▸ **Editing** and check **Including whitespace-only lines**.
 
 ![](screens/trailing-whitespace.png)
 
@@ -60,16 +60,17 @@ To simplify the process for everyone in the content pipeline, you'll need to add
 ![](screens/add-run-script.png)
 
 4. Drag the new phase before the **Compile Sources** phase.
-4. Click the disclosure triangle on the **Run Script** phase and ensure **Shell** is set to **/bin/sh**.
+5. Click the disclosure triangle on the **Run Script** phase and ensure **Shell** is set to **/bin/sh**.
 
 ![](screens/empty-run-script.png)
 
 6. Add the following script:
+
 ```
 PATH=/opt/homebrew/bin:$PATH
-if [ -f ~/com.raywenderlich.swiftlint.yml ]; then
+if [ -f ~/io.lunedata.swiftlint.yml ]; then
   if which swiftlint >/dev/null; then
-    swiftlint --no-cache --config ~/com.raywenderlich.swiftlint.yml
+    swiftlint --no-cache --config ~/io.lunedata.swiftlint.yml
   fi
 fi
 ```
@@ -81,12 +82,14 @@ Your sample project must compile without warnings — SwiftLint or otherwise. In
 You may only disable a rule if it is on the list of approved exceptions listed below.
 
 Prefer the form that disables a rule only for the next line:
+
 ```
 // swiftlint:disable:next implicitly_unwrapped_optional
 var injectedValue: Data!
 ```
 
 Or, similarly, for the previous line:
+
 ```
 var injectedValue: Data!
 // swiftlint:disable:previous implicitly_unwrapped_optional
@@ -148,7 +151,7 @@ Button(action: { self.isPresented.toggle() }) {
 }
 ```
 
-This violates the rule that you should not use trailing closure syntax when a method accepts multiple closure parameters, so SwiftLint will flag it with a warning. 
+This violates the rule that you should not use trailing closure syntax when a method accepts multiple closure parameters, so SwiftLint will flag it with a warning.
 
 You can work around this by extracting the `Button`'s action into a separate method. While this is frequently a better solution when the action requires several statements, it's an onerous requirement when the action is a single statement, as in the example above.
 
@@ -164,6 +167,6 @@ Occasionally, you'll find it necessary to include an unmodified open-source file
 
 ## Other Notes
 
-While SwiftLint goes a long way towards making your source code compliant with our style guide, it doesn't cover everything. For example, it won't catch or force you to correct the formatting for multi-condition `guard` statements. (See [Golden Path](https://github.com/raywenderlich/swift-style-guide#golden-path) for correct formatting.)
+While SwiftLint goes a long way towards making your source code compliant with our style guide, it doesn't cover everything. For example, it won't catch or force you to correct the formatting for multi-condition `guard` statements. (See [Golden Path](https://github.com/Lune-Technologies/swift-style-guide#golden-path) for correct formatting.)
 
 This configuration has been tested against several dozen of our most recent tutorials. A couple of rules, such as the line length limit or the limit on the length of a function, may need tweaking to fit our style. If you find yourself butting heads with SwiftLint, please reach out to the iOS Team Lead with details.
