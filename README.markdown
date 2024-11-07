@@ -1192,7 +1192,7 @@ file:
 
 ## Smiley Face
 
-As encouraged by [Kodeco](https://www.kodeco.com/), smiley faces are a very prominent style feature of the [Lune](https://www.lunedata.io/) site! It is very important to have the correct smile signifying the immense amount of happiness and excitement for the coding topic. The closing square bracket `]` is used because it represents the largest smile able to be captured using ASCII art. A closing parenthesis `)` creates a half-hearted smile, and thus is not preferred.
+As encouraged by [Kodeco](https://www.kodeco.com/), smiley faces are a very prominent style feature for [Lune® Technologies](https://www.lunedata.io/)! It is very important to have the correct smile signifying the immense amount of happiness and excitement for the coding topic. The closing square bracket `]` is used because it represents the largest smile able to be captured using ASCII art. A closing parenthesis `)` creates a half-hearted smile, and thus is not preferred.
 
 **Preferred**:
 
